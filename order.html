@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order | Aasish Cookie Company</title>
+    <style>
+        input {
+            border-radius: 5px;
+        }
+
+        #popup {
+            width: 70%;
+            height: 50px;
+            background-color: #ad1b1ba2;
+            opacity: 65%;
+            border-radius: 5px;
+            position: fixed;
+            top: 0;
+            left: 15%;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body style="background-color: #808080; color: black;">
+    <ul>
+        Links:
+        <li><a href="index.html"> Home page | Aasish Cookie Company</a></li>
+        <li><a href="credits.html"> Credits | Aasish Cookie Company</a></li>
+    </ul>
+    <br>
+    <p style="color: rgb(255, 0, 0); font-weight: bold;">The mininum cookies are 1, the maximum for cookies are 100.</p>
+
+    The avaliable cookies in our company:
+    <table border="5px">
+        <tr>
+            <th>Cookie Type</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Chocolate Chip</td>
+            <td>$4.50</td>
+        </tr>
+        <tr>
+            <td>Oatmeal Raisin</td>
+            <td>$2.50</td>
+        </tr>
+    </table>
+    <br><br>
+    <form onsubmit="event.preventDefault(); orderFunction()">
+        <label>Cookie Type</label>
+        <input id="Cookie_Type"><br>
+        <label>Quantity</label>
+        <input id="Quantity" type="number" min="1" max="100"><br>
+        <label>Delievery Date</label>
+        <input id="Date" type="date"><br> 
+        <button>Order</button>
+    </form>
+    <script>
+        function orderFunction() {
+            quantity = document.getElementById("Quantity");
+            coo_type = document.getElementById("Cookie_Type");
+            theDate = document.getElementById("Date");
+            
+            if (!(coo_type.value === "Oatmeal Raisin" || coo_type.value === "Chocolate Chip")) {
+                showPopup(`"${coo_type.value}" is not a valid cookie type. Please select a valid cookie type from the list.`);
+            } else {
+                alert(`Order successful! Your order of ${coo_type.value} will arrive! You have ordered ${quantity.value} cookies. We will try to get your order delivered on ${theDate.value}. Thank you for visiting!`);
+            }
+        }
+
+        function showPopup(message) {
+            var popup = document.createElement('div');
+            popup.id = "popup";
+
+            var popupMessage = document.createElement('p');
+            popupMessage.textContent = message;
+
+            var closeButton = document.createElement('button');
+            closeButton.textContent = 'Close';
+            closeButton.addEventListener('click', function() {
+                document.body.removeChild(popup);
+            });
+        
+            popup.appendChild(popupMessage);
+            popup.appendChild(closeButton);
+        
+            document.body.appendChild(popup);
+        }
+
+    </script>
+</body>
+</html>
